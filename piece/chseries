@@ -1,0 +1,12 @@
+#!/bin/sh
+# use for modify series of clib.c
+# Pham The Chung written
+modify_clib_series(){
+	let nse=`grep -m 1 series clib.c | cut -d" " -f 3`;
+	let nse--;
+	sed -i "s/`grep -m 1 series clib.c | cut -d" " -f 3`/${nse}/" clib.c;
+	echo "clib new series: $nse";
+}
+
+modify_clib_series;
+

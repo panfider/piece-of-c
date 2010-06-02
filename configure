@@ -1,0 +1,100 @@
+#!/bin/sh
+# Pham The Chung
+# create 22/2/2010
+# set up variable
+par_argc=$#; #number of parameter on 
+par_argv=$@; #array of value
+arr_lopt=( show_help prefix );
+# getopt
+getopt(){
+	a=1;
+}
+check(){
+	if [[ -z $1 ]]; then
+		echo "no parameter";
+	else
+		echo $1;
+	fi
+}
+searchList(){
+	key=$1;
+	echo ${2[0]};
+}
+show_help(){
+	echo -e "build x86_64 only";
+	echo -e "\ntype command:\n make \n make install\n";
+
+}
+show_figure(){
+	echo -e " ";
+	echo -e "\t+----------------------------+";
+	echo -e "\t|   Pham The Chung encode    |";
+	echo -e "\t+----------------------------+";
+}
+check_ncurses(){
+	name_so="libncurses.so.5";
+	name_a="libncurses.a";
+	where="/lib";
+	tso="no";
+	ta="no";
+	if test -e $where/$name_so;then tso="yes";fi;
+	if test -e $where/$name_a;then ta="yes";fi;
+	#if test -e "$where"64;then 
+	return $ta;
+}
+confile=conftest.c;
+genfile(){
+cat >$confile<<CEOF
+int main(int argc,char **argv){
+	return 0;
+}
+CEOF
+}
+check_gcc(){
+	genfile;
+	#searchList $1 $arr_lopt;
+	which gcc>/dev/null;
+	if [ ! $? ];then
+		echo "no compiler";
+		exit 1;
+	fi
+	if ! gcc $confile &> /dev/null ;then
+	  echo "check :compiler gcc doesnt work!";
+	  exit 1;
+	else
+	  if [ -e a.out ];then
+		echo "check gcc: gcc working";
+	  else
+		echo "gcc can't generate binary file";
+		exit 1;
+	  fi
+	fi
+}
+check_header(){
+	if [ ! -e /usr/include/stdio.h ];then
+	  echo "checking stdio.h: no stdio.h";
+	  exit 1;
+	fi
+	rm -f $confile;
+cat >$confile<<CEOF
+#include <stdio.h>
+int main(int argc,char **argv){
+	printf("checking gcc compiler\n");
+	return 0;
+}
+CEOF
+	if ! gcc $confile&>/dev/null ;then
+	  echo "checking stdio.h: cant compile with header";
+	  exit 1;
+	fi
+	echo "checking stdio.h: OK";
+}
+# main call sector
+check_gcc;
+check_header;
+rm -f a.out;
+rm -f $confile;
+show_figure;
+show_help;
+exit 1;
+

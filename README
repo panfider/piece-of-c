@@ -1,0 +1,52 @@
+		In awareness
+This package is written with no conscious about the merchant, commercial or trading.
+I dont think any about benefit while writting. It just my hobby.
+This is completely free from aspect of writer and using
+Author Pham The Chung email pham.the.chung0@gmail.com
+[Description]
+	clib is stand for C (language) library, it reverse libc
+	from 10/5/2010 it has new name piece-of-c or short name piece-c
+	I write for hobby.
+	Now it just implement string and other auxilary function.
+	Read header file in include directory to see what functions 
+	I has been implement
+	piece-c also provide a util for simple unix command.
+[Compiling] 
+	On any Unix machine has gcc compiler. Do these step to compile and install.
+	You may read [Note] below before going to compiling.
+	make
+	make install 
+	No need to call ./configure, but to make it easy also have a configure file to call
+	Default it install to your system in :
+		/usr/include/piece for header  and lib in /lib64
+	Use make install prefix=<where> to prefix path 
+[Note]
+	Complete code can compile on x86_64.If compile on 32bit part of code
+	will compile. NOT ALL
+	The diffence between 32 and 64 are very clear, because
+	it base on hardware very high
+	Each time compile the chseries script will change the series of clib
+	in file piece/piece.c
+	I has been compile for win32 with Mingw 32 but 
+	I dont write configure for modify code for win32
+[License] 23/05/2010
+	I don't know how to choose license approviate my hobby
+	to 1/10/2010 I will choose what license for my code
+		GPL v2,v3 Apache BSD MIT license
+
+[Future]
+	engine module code will present in this project
+will standard for 
+1 string.h
+2 stdio.h
+3 dirent.h 
+4 malloc.h
+5 math.h
+6 getopt.h
+7 time.h
+8 stdlib.h
+9 
+a
+1 iofile.c
+2
+3
